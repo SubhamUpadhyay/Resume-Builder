@@ -74,3 +74,24 @@ const loginUser = async (req, res) => {
     })
   }
 };
+
+
+//GET USER function 
+
+const getUserProfile = async(req,res)=>{
+    try{
+        const {email} = req.body;
+        const find_user = await User.findOne({email});
+        if(!find_user)
+        {
+            return res.status(404).json({message:"User not registered"});
+        }
+        res.json(find_user);
+    }catch(err)
+    {
+        res.status(500).json({
+        message:"Server Error",
+        message:err.message
+    })
+    }
+}
