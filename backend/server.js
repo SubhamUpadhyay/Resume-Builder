@@ -3,6 +3,7 @@ const cors = require('cors')
 require('dotenv').config();
 const connectDB = require('./config/db')
 const cookieParser = require('cookie-parser');
+const userRouter = require('./routes/userRouter');
 
 
 
@@ -17,7 +18,7 @@ app.use(cors());
 //middleware
 
 app.use(express.json());
-
+app.use('/api/auth',userRouter)
 //routes
 
 app.get("/", (req, res) => {
